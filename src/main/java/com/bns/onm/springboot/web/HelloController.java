@@ -1,5 +1,6 @@
 package com.bns.onm.springboot.web;
 
+import com.bns.onm.springboot.web.dto.HelloResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,13 @@ public class HelloController {
     public String hello(@RequestParam String idValue) {
         logger.info("Req Param Value : " + idValue);
         return idValue;
+    }
+
+    @GetMapping("/hello/dto")
+    public HelloResponseDto helloDto(@RequestParam("name") String name,
+                                     @RequestParam("amount") int amount) {
+
+        return new HelloResponseDto(name, amount);
     }
 }
 
