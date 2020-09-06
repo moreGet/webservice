@@ -23,7 +23,7 @@ public class PostsRepositoryTest {
     - 테스트가 동시에 수행된다면 H2에는 데이터가 그대로 남아 있어 테스트가 실패 할 수 있음.
      */
     @After
-    public void cleanup() {
+    public void cleanUp() {
         postsRepository.deleteAll();
     }
 
