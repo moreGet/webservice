@@ -1,10 +1,12 @@
 package com.bns.onm.springboot.domain.posts;
 
+import com.bns.onm.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -15,7 +17,7 @@ import javax.persistence.*;
 - Class는 CamelCase -> Table은 UnderScoreNaming
  */
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id // 해당 테이블의 PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 부트2.0 부터는 AutoIncrement 를 위해 필수
