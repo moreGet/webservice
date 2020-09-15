@@ -32,6 +32,17 @@ public class PostsService {
         return id;
     }
 
+    @Transactional
+    public void delete(Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+
+        /*Jpa 에서 이미 delete 메소드를 지원하고 있다.
+        deleteById 로 바로 삭제가 가능하지만 존재하는지 확인 후
+        삭제 하기위해 위 처럼 먼저 Posts 객체를 조회한다.*/
+        postsRepository.delete(posts);
+    }
+
     /*
     트랜잭션 범위는 유지
     조회기능만 남겨놓으므로 조회속도 개선 
