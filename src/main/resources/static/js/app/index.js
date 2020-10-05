@@ -1,7 +1,29 @@
-var main = {
+function onLoad() {
+    gapi.load('client:auth2', function() {
+        gapi.auth2.init({
+            client_id:'850417348860-6avt5dtq96r8290i7g30d66b882d4vf9.apps.googleusercontent.com'
+        });
+    });
+}
+
+function out() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+        console.log('User signed out.');
+    });
+    auth2.disconnect();
+    alert("로그 아웃");
+}
+
+let main = {
     init : function () {
-        var _this = this;
-        $('#btn-save').on('click', function () {
+        let _this = this;
+
+        // $('#btn-logout').on('click', () => {
+        //     _this.logout();
+        // });
+
+        $('#btn-save').on('click', () => {
            _this.save();
         });
 
@@ -16,8 +38,12 @@ var main = {
         });
     },
 
+    // logout : () => {
+    //
+    // },
+
     save : function () {
-        var data = {
+        let data = {
             title: $('#title').val(),
             author: $('#author').val(),
             content: $('#content').val()
@@ -39,12 +65,12 @@ var main = {
 
     // 신규로 추가될 update 함수
     update : () => {
-        var data = {
+        let data = {
             title: $('#title').val(),
             content: $('#content').val()
         };
 
-        var id = $('#id').val();
+        let id = $('#id').val();
 
         $.ajax({
             /*HTTP Method중 PUT 메소드를 선택
@@ -64,7 +90,7 @@ var main = {
     },
 
     delete : () => {
-        var id = $('#id').val();
+        let id = $('#id').val();
 
         $.ajax({
            type: 'DELETE',

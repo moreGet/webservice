@@ -5,9 +5,32 @@
     <div class="row">
         <div class="col-md-6">
             <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+            <!-- 머스테치는 다른 언어와 같은 if문 을 제공하지 않습니다 true/false 여부만 판단
+                 그래서 머스테치에서는 항상 최종값을 넘겨줘야 함
+                 여기서도 역시 userName이 있다면 userName을 노출-->
+            {{#userName}}
+                Logged in as : <span id="user"> {{userName}} </span>
+                <!--
+                - 스프링 시큐리티에서 기본적으로 제공하는 로그아웃 URL
+                - 개발자 별도 URL에 해당하는 컨트롤러 만들필요 없음
+                - SecurityConfig 클래스에서 URL을 변경할 순 있지만 기본 URL을 사용해도 충분함
+                -->
+                <a href="/logout" class="btn btn-info active" id="btn-logout" role="button" onclick="out()">Logout</a>
+            {{/userName}}
+
+            <!--
+             - 머스테치에서 false는 ^를 붙힘
+             - userName 이 없다면 login 버튼 노출
+             -->
+            {{^userName}}
+                <!--
+                 - 스프링 시큐리티에서 기본적으로 제공하는 로그인 버튼
+                 - 로그아웃 URL과 마찬가지로 개발자가 별도의 컨트롤러 생성 불필요
+                 -->
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+            {{/userName}}
         </div>
     </div>
-
     <br>
     <!-- 목록 출력 영역 -->
     <table class="table table-horizontal table-bordered">
