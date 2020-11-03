@@ -1,9 +1,13 @@
 package com.bns.onm.springboot.web;
 
+import com.bns.onm.springboot.config.auth.SecurityConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -19,21 +23,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  - @Service, @Component, @Repository 등은 사용 붕가
  - 여기서는 단순 컨트롤러만 사용하기에 아래 어노테이션 사용
  */
-@WebMvcTest(controllers = HelloController.class)
+@WebMvcTest(controllers = HelloController.class,
+            excludeFilters = {
+            @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = SecurityConfig.class)})
 public class HelloControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
+    @WithMockUser(roles = "USER")
     @Test // Test 메소드 표시
     public void hello가_리턴된다() throws Exception {
         String hello = "hello";
 
-        mvc.perform(get("/hello")) // get Url 맵핑
+        mvc.perform(get("/hello").param("idValue", hello)) // get Url 맵핑
                 .andExpect(status().isOk()) // 응답이 200 ok 응답 이면
                 .andExpect(content().string(hello)); // controller 의 return 값이 hello 인지 검사
     }
 
+    @WithMockUser(roles = "USER")
     @Test
     public void helloDto가_리턴된다() throws Exception {
         String name = "hello";

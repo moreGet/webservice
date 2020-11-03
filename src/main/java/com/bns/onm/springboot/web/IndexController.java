@@ -1,9 +1,11 @@
 package com.bns.onm.springboot.web;
 
+import com.bns.onm.springboot.config.auth.LoginUser;
 import com.bns.onm.springboot.config.auth.SessionUser;
 import com.bns.onm.springboot.service.posts.PostsService;
 import com.bns.onm.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
@@ -39,11 +41,11 @@ public class IndexController {
     - 여기서는 findAllDesc의 객체를 posts로 index.mustache에 전달 합니다.
      */
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
 
         // 앞서 작성된 CustomOAuth2UserService에서 로그인 성공 시 세션에 SessionUser를 저장하도록 구성 했습니다.
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        // SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         // 세션에 저장된 값이 존재할 때만 model에 userName으로 등록 합니다.
         if(user != null) {
