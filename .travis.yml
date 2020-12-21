@@ -1,6 +1,3 @@
-before_install:
-  - chomod +x gradlew
-
 language: java
 jdk:
   - openjdk8
@@ -14,6 +11,10 @@ cache: # 의존성을 아래 디렉토리에 캐싱하여 재배포시 중복 �
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
+    -
+# gradlew 권한
+before_install:
+  - chomod +x gradlew
 
 # Master 브랜치에 푸시 되었을때 수행하는 명령어
 script: "./gradlew clean build"
