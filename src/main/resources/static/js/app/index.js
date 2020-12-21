@@ -12,7 +12,7 @@ function out() {
     //     console.log('User signed out.');
     // });
     auth2.disconnect();
-    alert("로그 아웃");
+    alert("로그아웃");
 }
 
 let main = {
