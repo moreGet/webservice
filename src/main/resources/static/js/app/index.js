@@ -19,9 +19,9 @@ let main = {
     init : function () {
         let _this = this;
 
-        // $('#btn-logout').on('click', () => {
-        //     _this.logout();
-        // });
+        $('#btn-logout').on('click', () => {
+            _this.logout();
+        });
 
         $('#btn-save').on('click', () => {
            _this.save();
@@ -38,9 +38,9 @@ let main = {
         });
     },
 
-    // logout : () => {
-    //
-    // },
+    logout : () => {
+        out();
+    },
 
     save : function () {
         let data = {
