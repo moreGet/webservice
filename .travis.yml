@@ -4,7 +4,7 @@ jdk:
 
 # gradlew 권한
 before_install:
-  - chomod +x ./gradlew
+  - chmod +x gradlew
 
 branches: # Travis CI를 어느 브랜치가 푸시될 때 수행할지 지정
   only: # Master 브랜치만 가능
