@@ -32,7 +32,6 @@ import java.util.List;
 public class IndexController {
     private final PostsService postsService;
     private final HttpSession httpSession;
-
     private List<LogoutHandler> logoutHandler;
 
     /*
