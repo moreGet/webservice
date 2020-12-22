@@ -16,13 +16,13 @@ cache: # 의존성을 아래 디렉토리에 캐싱하여 재배포시 중복 �
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
-# Master 브랜치에 푸시 되었을때 수행하는 명령어
+# Master 브랜치에 푸시 되었을때 수행하는 명령어 프로젝트 내부
 script: "./gradlew clean build"
 
 # Deploy 명령어가 수행 되기전 수행.
 # CodeDeploy는 Jar 파일은 인식하지 못하므로 Jar+기타 설정 파일들을 모아 압축
 before_deploy:
-  - zip -r freelec-springboot2-webservice * # 현재 위치의 모든 파일을 해당 이름으로 압축
+  - zip -r freelec-springboot2-webservice webservice # 현재 위치의 모든 파일을 해당 이름으로 압축
   - mkdir -p deploy # Travis가 생성중인 위치에 deploy폴더 생성
   - mv freelec-springboot2-webservice.zip deploy/freelec-springboot2-webservice.zip
   # mv ~ <-- 위 zip파일을 오른쪽 deploy 경로로 이동
