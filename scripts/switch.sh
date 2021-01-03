@@ -16,7 +16,7 @@ function switch_proxy() {
     # 쌍따옴표를 사용
     # 사용하지 않으면 $service_url을 그대로 인식하지 못하고 변수를 찾게됨
     # tee는 파일 덮어쓰기
-    echo "set \$service_url http://127.0.0.1${IDLE_PORT};" | sudo tee /etc/nginx/conf.d/service-url.inc
+    echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" | sudo tee /etc/nginx/conf.d/service-url.inc
 
     # reload는 restart와는 다르게 끊김없이 nginx를 불러옴 중요 설정들은 반영할 땐 restart를 사용 해야함
     # 외부 설정 파일을 불러오는 거라 reload 가능
