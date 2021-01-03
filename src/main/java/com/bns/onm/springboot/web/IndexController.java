@@ -50,7 +50,6 @@ public class IndexController {
         if(user != null) {
             model.addAttribute("userName", user.getName());
         }
-
         return "index";
     }
 
