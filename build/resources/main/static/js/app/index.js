@@ -1,27 +1,19 @@
-// function onLoad() {
-//     gapi.load('client:auth2', function() {
-//         gapi.auth2.init({
-//             client_id:'850417348860-6avt5dtq96r8290i7g30d66b882d4vf9.apps.googleusercontent.com'
-//         });
-//     });
-// }
-
 function out() {
     // var auth2 = gapi.auth2.getAuthInstance();
     // auth2.signOut().then(function () {
     //     console.log('User signed out.');
     // });
     auth2.disconnect();
-    alert("로그 아웃");
+    alert("로그아웃");
 }
 
 let main = {
     init : function () {
         let _this = this;
 
-        // $('#btn-logout').on('click', () => {
-        //     _this.logout();
-        // });
+        $('#btn-logout').on('click', () => {
+            _this.logout();
+        });
 
         $('#btn-save').on('click', () => {
            _this.save();
@@ -38,9 +30,9 @@ let main = {
         });
     },
 
-    // logout : () => {
-    //
-    // },
+    logout : () => {
+        out();
+    },
 
     save : function () {
         let data = {
