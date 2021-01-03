@@ -17,7 +17,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group 'com.ch.get'
-version '1.0-SNAPSHOT'
+version '1.0.1-SNAPSHOT-' + new Date().format("yyyyMMddHHmmss") // 배포시 이름 압겹치게
 sourceCompatibility = 1.8
 
 repositories {
