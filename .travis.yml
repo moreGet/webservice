@@ -17,7 +17,8 @@ cache: # 의존성을 아래 디렉토리에 캐싱하여 재배포시 중복 �
     - '$HOME/.gradle'
 
 # Master 브랜치에 푸시 되었을때 수행하는 명령어 프로젝트 내부
-script: "./gradlew -DskipTests=true clean build"
+# script: "./gradlew clean build"
+script: "./gradlew -DskipTests=true build"
 
 # Deploy 명령어가 수행 되기전 수행.
 # CodeDeploy는 Jar 파일은 인식하지 못하므로 Jar+기타 설정 파일들을 모아 압축
